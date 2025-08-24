@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños!</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom, #b3e5fc, #e1f5fe);
+            color: #333;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .slideshow-container {
+            max-width: 800px;
+            position: relative;
+            margin: auto;
+            text-align: center;
+        }
+        .slide {
+            display: none;
+            animation: fade 1s ease-in-out;
+        }
+        .slide.active {
+            display: block;
+        }
+        .slide img, .slide video {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            margin-bottom: 1rem;
+        }
+        .message {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin: 0 1rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #0288d1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            animation: bounce 2s infinite;
+        }
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #0288d1;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+        .nav-btn:hover {
+            background: #0277bd;
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
+        }
+        .confetti {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: #4fc3f7;
+            animation: fall 5s linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        @keyframes fade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-7px); }
+        }
+        audio {
+            display: none;
+        }
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .slide img, .slide video { max-height: 300px; }
+            .message { font-size: 1rem; padding: 1rem; }
+            .nav-btn { padding: 0.3rem 0.8rem; font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <audio autoplay loop>
+        <source src="C:\Users\Windows\Desktop\cumplee\assets\audio\Im Yours.mp3" type="audio/mpeg">
+        Tu navegador no soporta audio.
+    </audio>
+    <h1>¡Feliz Cumpleaños, Princesa!</h1>
+    <div class="slideshow-container">
+        <div class="slide">
+            <img src="C:\Users\Windows\Desktop\cumplee\assets\imagenes\1.jpg" alt="Foto 1">
+            <div class="message">
+                <p>¡Eres una luz que ilumina todo a su alrededor! Hoy celebramos lo increíble que eres y todos los momentos felices que compartimos. ¡Que tu día esté lleno de sonrisas!</p>
+            </div>
+        </div>
+        <div class="slide">
+            <video controls>
+                <source src="assets/videos/video.mp4" type="video/mp4">
+                Tu navegador no soporta videos.
+            </video>
+            <div class="message">
+                <p>Tu alegría es contagiosa, y cada momento contigo es un tesoro. ¡Que este cumpleaños te traiga todo el amor y la felicidad que mereces!</p>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="assets/images/foto3.jpg" alt="Foto 3">
+            <div class="message">
+                <p>Eres única, especial y maravillosa. Gracias por ser tú y por hacer mi mundo más bonito. ¡Que este nuevo año de vida sea mágico!</p>
+            </div>
+        </div>
+        <button class="nav-btn prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="nav-btn next" onclick="changeSlide(1)">&#10095;</button>
+    </div>
+    <script>
+        let slideIndex = 0;
+        const slides = document.getElementsByClassName("slide");
+        slides[slideIndex].classList.add("active");
+
+        function changeSlide(n) {
+            slides[slideIndex].classList.remove("active");
+            slideIndex = (slideIndex + n + slides.length) % slides.length;
+            slides[slideIndex].classList.add("active");
+        }
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * window.innerWidth + 'px';
+            confetti.style.background = ['#4fc3f7', '#0288d1', '#b3e5fc', '#81d4fa'][Math.floor(Math.random() * 4)];
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 5000);
+        }
+        setInterval(createConfetti, 150);
+    </script>
+</body>
+</html>
