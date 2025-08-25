@@ -393,7 +393,7 @@ function anim() {
         ctx.fillStyle = 'hsla(0, 80%, 70%, ' + Math.min(elapsed / 100, 1) + ')';
         ctx.font = '40px Times New Roman';
         ctx.textAlign = 'center';
-        ctx.fillText('¡Eres una persona especial, que este día esté lleno de alegría!', w / 2, h / 2);
+        ctx.fillText('Eres una persona muy especial para mi, pasala bien el dia de hoy ☺️', w / 2, h / 2);
         if (elapsed >= messageDuration) {
             messageDisplayed = true;
             imageStartTime = Date.now();
