@@ -438,3 +438,4 @@ window.addEventListener('resize', function() {
 
     ctx.font = opts.charSize + 'px Times New Roman';
 });
+// SERA EL DEFINITIVO??
