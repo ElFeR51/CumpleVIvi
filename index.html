@@ -46,16 +46,16 @@
     // Responsive font size and spacing based on viewport
     function getResponsiveSizes() {
       var isMobile = window.innerWidth <= 768;
-      var baseCharSize = isMobile ? Math.min(3 * window.innerWidth / 100, 24) : 30; // 3vw, capped at 24px for mobile
+      var baseCharSize = isMobile ? Math.min(2.5 * window.innerWidth / 100, 20) : Math.min(3 * window.innerWidth / 100, 28); // 2.5vw for mobile, 3vw for desktop
       return {
         charSize: baseCharSize,
-        charSpacing: baseCharSize * 1.167, // Maintain proportion with charSize
-        lineHeight: baseCharSize * 1.333, // Maintain proportion with charSize
+        charSpacing: baseCharSize * 1.1, // Adjusted for tighter spacing
+        lineHeight: baseCharSize * 1.2, // Adjusted for single-line text
       };
     }
 
     var opts = {
-      strings: ['FELIZ', 'CUMPLEAÑOS'],
+      strings: ['FELIZ CUMPLEAÑOS VIVI <3'], // Updated text
       charSize: getResponsiveSizes().charSize,
       charSpacing: getResponsiveSizes().charSpacing,
       lineHeight: getResponsiveSizes().lineHeight,
@@ -94,7 +94,7 @@
       balloonAddedRadian: -1,
     },
     calc = {
-      totalWidth: opts.charSpacing * Math.max(opts.strings[0].length, opts.strings[1].length)
+      totalWidth: opts.charSpacing * opts.strings[0].length // Updated for single string
     },
     Tau = Math.PI * 2,
     TauQuarter = Tau / 4,
@@ -113,7 +113,7 @@
       opts.charSpacing = sizes.charSpacing;
       opts.lineHeight = sizes.lineHeight;
       ctx.font = opts.charSize + 'px Times New Roman';
-      calc.totalWidth = opts.charSpacing * Math.max(opts.strings[0].length, opts.strings[1].length);
+      calc.totalWidth = opts.charSpacing * opts.strings[0].length;
     }
 
     updateFont();
@@ -382,7 +382,7 @@
       if (done && !messageDisplayed) {
         if (!messageStartTime) messageStartTime = Date.now();
         var elapsed = (Date.now() - messageStartTime) / 16.67;
-        var messageFontSize = window.innerWidth <= 768 ? Math.min(3 * window.innerWidth / 100, 28) : 40;
+        var messageFontSize = window.innerWidth <= 768 ? Math.min(2.5 * window.innerWidth / 100, 24) : Math.min(3 * window.innerWidth / 100, 32);
         ctx.fillStyle = 'hsla(0, 80%, 70%, ' + Math.min(elapsed / 100, 1) + ')';
         ctx.font = messageFontSize + 'px Times New Roman';
         ctx.textAlign = 'center';
